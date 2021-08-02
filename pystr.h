@@ -18,3 +18,5 @@ void lower(String *);
 void destroy(String *);
 
 void set_content(String *, char *);
+
+void title(String *string);

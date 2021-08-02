@@ -58,6 +58,15 @@ void set_content(String *str, char *s)
     str->length = strlen(s);
 }
 
+void title(String *string)
+{
+    for (int i = 0; i < string->length; ++i)
+        if ((string->content[i - 1] == ' ' || string->content[i - 1] == '\t') && string->content[i] >= 'a' &&
+            string->content[i] <= 'z')
+            string->content[i] = string->content[i] - 32;
+}
+
+
 void destroy(String *s)
 {
     free(s);
