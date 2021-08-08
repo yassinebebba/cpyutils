@@ -66,6 +66,20 @@ void title(String *string)
             string->content[i] = string->content[i] - 32;
 }
 
+void squeeze(String *string, char c)
+{
+    // removes all occurrences a character
+
+    int i, j;
+    for (i = j = 0; i < string->length; ++i)
+    {
+        if (string->content[i] != c)
+        {
+            string->content[j++] = string->content[i];
+        }
+    }
+}
+
 
 void destroy(String *s)
 {
