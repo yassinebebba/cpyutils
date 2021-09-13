@@ -22,3 +22,5 @@ void set_content(String *, char *);
 void title(String *string);
 
 void squeeze(String *, char);
+
+void repeat(String *, unsigned long);

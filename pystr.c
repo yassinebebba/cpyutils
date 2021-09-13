@@ -1,5 +1,6 @@
 #include <string.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 #define MAX 1000
 
@@ -80,6 +81,16 @@ void squeeze(String *string, char c)
     }
 }
 
+void repeat(String *string, const unsigned long c)
+{
+    char temp[MAX];
+    strcpy(temp, string->content);
+    for (unsigned long i = 0; i < c * string->length; ++i)
+    {
+        string->content[i] = temp[i % string->length];
+    }
+    string->length = c * string->length;
+}
 
 void destroy(String *s)
 {
