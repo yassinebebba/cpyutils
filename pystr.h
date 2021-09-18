@@ -1,11 +1,10 @@
 #include <string.h>
 #include <stdio.h>
 
-#define MAX 1000
 typedef struct String
 {
-    char content[MAX];
     unsigned long length;
+    char content[];
 } String;
 
 String *string_builder(char *);

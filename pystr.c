@@ -2,12 +2,10 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#define MAX 1000
-
 typedef struct String
 {
-    char content[MAX];
     unsigned long length;
+    char content[];
 } String;
 
 void upper(String *s)
@@ -83,21 +81,13 @@ void squeeze(String *string, char c)
 
 void repeat(String *string, const unsigned long c)
 {
-    // to be changed to stderr pipe
-    if (c > MAX)
+    char temp[1000];
+    strcpy(temp, string->content);
+    for (unsigned long i = 0; i < c * string->length; ++i)
     {
-        printf("ERROR: New count is greater than the stack MAX.\n");
-    } else
-    {
-
-        char temp[MAX];
-        strcpy(temp, string->content);
-        for (unsigned long i = 0; i < c * string->length; ++i)
-        {
-            string->content[i] = temp[i % string->length];
-        }
-        string->length = c * string->length;
+        string->content[i] = temp[i % string->length];
     }
+    string->length = c * string->length;
 }
 
 void destroy(String *s)
