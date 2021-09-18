@@ -77,6 +77,7 @@ void squeeze(String *string, char c)
             string->content[j++] = string->content[i];
         }
     }
+    string->content[j] = '\0';
 }
 
 void repeat(String *string, const unsigned long c)
