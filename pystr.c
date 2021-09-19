@@ -56,8 +56,14 @@ String *copy(String *string)
 
 void set_content(String *str, char *s)
 {
+    // TODO: if len < str->length >>> reduce the size
+    unsigned long len = strlen(s);
+    if (len > str->length)
+    {
+        str = realloc(str, sizeof(String) + strlen(s) - 1);
+    }
     strcpy(str->content, s);
-    str->length = strlen(s);
+    str->length = len;
 }
 
 void title(String *string)
