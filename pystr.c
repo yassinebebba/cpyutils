@@ -48,7 +48,10 @@ String *string_builder(char *s)
 
 String *copy(String *string)
 {
-    return string_builder(string->content);
+    String *temp = malloc(sizeof(String) + string->length - 1);
+    strcpy(temp->content, string->content);
+    temp->length = string->length;
+    return temp;
 };
 
 void set_content(String *str, char *s)
