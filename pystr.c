@@ -40,7 +40,7 @@ void lower(String *s)
 
 String *string_builder(char *s)
 {
-    String *temp = malloc(sizeof(String));
+    String *temp = malloc(sizeof(String) + strlen(s) - 1);
     strcpy(temp->content, s);
     temp->length = strlen(s);
     return temp;
