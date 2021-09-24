@@ -4,6 +4,7 @@
 
 typedef struct String
 {
+    // has to have a size field
     unsigned long length;
     char content[];
 } String;
@@ -52,7 +53,7 @@ String *copy(String *string)
     strcpy(temp->content, string->content);
     temp->length = string->length;
     return temp;
-};
+}
 
 void set_content(String *str, char *s)
 {
@@ -62,8 +63,8 @@ void set_content(String *str, char *s)
     {
         str = realloc(str, sizeof(String) + strlen(s) - 1);
     }
-    strcpy(str->content, s);
     str->length = len;
+    strcpy(str->content, s);
 }
 
 void title(String *string)
@@ -98,6 +99,14 @@ void repeat(String *string, const unsigned long c)
         string->content[i] = temp[i % string->length];
     }
     string->length = c * string->length;
+}
+
+void append(String *string, const char *s)
+{
+    // has to check if there is enough space
+    unsigned long len = strlen(s);
+    strcpy(string->content + string->length, s);
+    string->length += len;
 }
 
 void destroy(String *s)

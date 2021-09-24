@@ -24,3 +24,5 @@ void title(String *string);
 void squeeze(String *, char);
 
 void repeat(String *, unsigned long);
+
+void append(String *, const char *);
