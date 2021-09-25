@@ -105,6 +105,7 @@ void append(String *string, const char *s)
 {
     // has to check if there is enough space
     unsigned long len = strlen(s);
+    string = realloc(string, sizeof(String) + string->length + len - 1);
     strcpy(string->content + string->length, s);
     string->length += len;
 }
