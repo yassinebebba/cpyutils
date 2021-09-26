@@ -11,11 +11,11 @@ String *string_builder(char *);
 
 String *copy(String *);
 
+void slice(String *, u_long, u_long);
+
 void upper(String *);
 
 void lower(String *);
-
-void destroy(String *);
 
 void set_content(String *, char *);
 

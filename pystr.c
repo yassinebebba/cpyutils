@@ -110,7 +110,14 @@ void append(String *string, const char *s)
     string->length += len;
 }
 
-void destroy(String *s)
+void slice(String *string, u_long start, u_long end)
 {
-    free(s);
+    char temp[end - start + 1];
+    u_long i;
+    for (i = 0; i < end - start; ++i)
+    {
+        temp[i] = string->content[start + i];
+    }
+    temp[i] = '\0';
+    set_content(string, temp);
 }
