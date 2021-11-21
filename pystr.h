@@ -1,5 +1,9 @@
 #include <string.h>
 #include <stdio.h>
+#include <stdlib.h>
+
+#define print(str) printf("%s", str->content)
+#define len(str) str->length
 
 typedef struct String
 {
