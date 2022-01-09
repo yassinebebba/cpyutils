@@ -1,14 +1,15 @@
 #include <string.h>
 #include <stdlib.h>
 
-typedef struct String
+
+typedef struct str
 {
     // has to have a size field
     unsigned long length;
     char content[];
-} String;
+} str;
 
-void upper(String *s)
+void upper(str *s)
 {
     char temp[s->length];
 
@@ -23,7 +24,7 @@ void upper(String *s)
     strcpy(s->content, temp);
 }
 
-void lower(String *s)
+void lower(str *s)
 {
     char temp[s->length];
 
@@ -38,35 +39,35 @@ void lower(String *s)
     strcpy(s->content, temp);
 }
 
-String *string_builder(char *s)
+str *string_builder(char *s)
 {
-    String *temp = malloc(sizeof(String) + strlen(s) - 1);
+    str *temp = malloc(sizeof(str) + strlen(s) - 1);
     strcpy(temp->content, s);
     temp->length = strlen(s);
     return temp;
 }
 
-String *copy(String *string)
+str *copy(str *string)
 {
-    String *temp = malloc(sizeof(String) + string->length - 1);
+    str *temp = malloc(sizeof(str) + string->length - 1);
     strcpy(temp->content, string->content);
     temp->length = string->length;
     return temp;
 }
 
-void set_content(String *str, char *s)
+void set_content(str *string, char *s)
 {
     // TODO: if len < str->length >>> reduce the size
     unsigned long len = strlen(s);
-    if (len > str->length)
+    if (len > string->length)
     {
-        str = realloc(str, sizeof(String) + strlen(s) - 1);
+        string = realloc(string, sizeof(str) + strlen(s) - 1);
     }
-    str->length = len;
-    strcpy(str->content, s);
+    string->length = len;
+    strcpy(string->content, s);
 }
 
-void title(String *string)
+void title(str *string)
 {
     for (int i = 0; i < string->length; ++i)
         if ((string->content[i - 1] == ' ' || string->content[i - 1] == '\t') && string->content[i] >= 'a' &&
@@ -74,7 +75,7 @@ void title(String *string)
             string->content[i] = string->content[i] - 32;
 }
 
-void squeeze(String *string, char c)
+void squeeze(str *string, char c)
 {
     // removes all occurrences a character
 
@@ -89,7 +90,7 @@ void squeeze(String *string, char c)
     string->content[j] = '\0';
 }
 
-void repeat(String *string, const unsigned long c)
+void repeat(str *string, const unsigned long c)
 {
     char temp[1000];
     strcpy(temp, string->content);
@@ -100,16 +101,16 @@ void repeat(String *string, const unsigned long c)
     string->length = c * string->length;
 }
 
-void append(String *string, const char *s)
+void append(str *string, const char *s)
 {
     // has to check if there is enough space
     unsigned long len = strlen(s);
-    string = realloc(string, sizeof(String) + string->length + len - 1);
+    string = realloc(string, sizeof(str) + string->length + len - 1);
     strcpy(string->content + string->length, s);
     string->length += len;
 }
 
-void slice(String *string, u_long start, u_long end)
+void slice(str *string, u_long start, u_long end)
 {
     char temp[end - start + 1];
     u_long i;

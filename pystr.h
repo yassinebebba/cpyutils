@@ -5,11 +5,7 @@
 #define print(str) printf("%s", str->content)
 #define len(str) str->length
 
-typedef struct String
-{
-    unsigned long length;
-    char content[];
-} String;
+typedef struct str String;
 
 String *string_builder(char *);
 
