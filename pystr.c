@@ -9,6 +9,16 @@ typedef struct str
     char content[];
 } str;
 
+unsigned long get_length(str *s)
+{
+    return s->length;
+}
+
+char *get_content(str *s)
+{
+    return s->content;
+}
+
 void upper(str *s)
 {
     char temp[s->length];

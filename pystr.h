@@ -2,10 +2,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define print(str) printf("%s", str->content)
-#define len(str) str->length
+#define print(s) printf("%s", get_content(s))
+#define len(s) get_length(s)
 
 typedef struct str String;
+
+unsigned long get_length(String *s);
+
+char *get_content(String *s);
 
 String *string_builder(char *);
 
