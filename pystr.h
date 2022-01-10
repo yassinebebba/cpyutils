@@ -2,7 +2,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define print(s) printf("%s", get_content(s))
 #define len(s) get_length(s)
 
 typedef struct str String;

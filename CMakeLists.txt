@@ -3,4 +3,4 @@ project(cpyutils C)
 
 set(CMAKE_C_STANDARD 99)
 
-add_executable(cpyutils main.c pystr.c)
+add_executable(cpyutils main.c pystr.c builtins.c)

@@ -1,10 +1,12 @@
 #include <string.h>
 #include <stdlib.h>
+#include "builtins.h"
 
 
 typedef struct str
 {
     // has to have a size field
+    enum type_name type;
     unsigned long length;
     char content[];
 } str;
@@ -53,6 +55,7 @@ str *string_builder(char *s)
 {
     str *temp = malloc(sizeof(str) + strlen(s) - 1);
     strcpy(temp->content, s);
+    temp->type = TYPENAME_STRING_POINTER;
     temp->length = strlen(s);
     return temp;
 }
