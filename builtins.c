@@ -22,9 +22,11 @@ long double: TYPENAME_LONG_DOUBLE, \
 char *: TYPENAME_CHAR_POINTER, \
 void *: TYPENAME_VOID_POINTER, \
 int *: TYPENAME_INT_POINTER, \
+int *: TYPENAME_INT_POINTER,  \
+String *: TYPENAME_INT_POINTER, \
 default: TYPENAME_OTHER)
 
-enum type_name
+typedef enum type_name
 {
     TYPENAME_BOOL,
     TYPENAME_UNSIGNED_CHAR,
@@ -44,8 +46,15 @@ enum type_name
     TYPENAME_CHAR_POINTER,
     TYPENAME_VOID_POINTER,
     TYPENAME_INT_POINTER,
+    TYPENAME_STRING_POINTER,
     TYPENAME_OTHER
-};
+} type_name;
+
+typedef struct pyobject
+{
+    type_name type;
+    String *string;
+} pyobject;
 
 
 void print(int count, ...)
@@ -54,17 +63,51 @@ void print(int count, ...)
     va_start(args, count);
     for (unsigned int i = 0; i < count; ++i)
     {
-        void *obj = va_arg(args, void *);
-        switch (Type(obj))
+        pyobject *obj = va_arg(args, pyobject *);
+        switch (obj->type)
         {
-
+            case TYPENAME_STRING_POINTER:
+                printf("%s", get_content(obj->string));
+                break;
+            case TYPENAME_BOOL:
+                break;
+            case TYPENAME_UNSIGNED_CHAR:
+                break;
+            case TYPENAME_CHAR:
+                break;
+            case TYPENAME_SIGNED_CHAR:
+                break;
+            case TYPENAME_SHORT_INT:
+                break;
+            case TYPENAME_UNSIGNED_SHORT_INT:
+                break;
+            case TYPENAME_INT:
+                break;
+            case TYPENAME_UNSIGNED_INT:
+                break;
+            case TYPENAME_LONG_INT:
+                break;
+            case TYPENAME_UNSIGNED_LONG_INT:
+                break;
+            case TYPENAME_LONG_LONG_INT:
+                break;
+            case TYPENAME_UNSIGNED_LONG_LONG_INT:
+                break;
+            case TYPENAME_FLOAT:
+                break;
+            case TYPENAME_DOUBLE:
+                break;
+            case TYPENAME_LONG_DOUBLE:
+                break;
+            case TYPENAME_CHAR_POINTER:
+                break;
+            case TYPENAME_VOID_POINTER:
+                break;
+            case TYPENAME_INT_POINTER:
+                break;
+            case TYPENAME_OTHER:
+                break;
         }
-        printf("%s", get_content((String *) obj));
-//        switch (Type(obj))
-//        {
-//            case expression:
-//        }
-//        printf("%s", get_content(va_arg(args, String *)));
     }
     va_end(args);
 }
