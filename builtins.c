@@ -1,9 +1,10 @@
 #include <stdio.h>
 #include <stdarg.h>
+#include <stdint.h>
 #include "pystr.h"
 
 
-#define Type(x) _Generic((x), \
+#define GenericType(x) _Generic((x), \
 _Bool: TYPENAME_BOOL, \
 unsigned char: TYPENAME_UNSIGNED_CHAR, \
 char: TYPENAME_CHAR, \
@@ -56,18 +57,26 @@ typedef struct pyobject
     String *string;
 } pyobject;
 
+//int * parse_format(char * format)
+//{
+//    u_int32_t len = strlen(format);
+//    int array[len];
+//
+//    return array;
+//}
 
-void print(int count, ...)
+
+void print(char * format, ...)
 {
     va_list args;
-    va_start(args, count);
-    for (unsigned int i = 0; i < count; ++i)
+    va_start(args, format);
+    for (unsigned int i = 0; i < 2; ++i)
     {
-        pyobject *obj = va_arg(args, pyobject *);
-        switch (obj->type)
+        int *obj = va_arg(args, int *);
+        switch (*obj)
         {
             case TYPENAME_STRING_POINTER:
-                printf("%s", get_content(obj->string));
+                printf("%s", get_content((String *) obj));
                 break;
             case TYPENAME_BOOL:
                 break;

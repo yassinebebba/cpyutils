@@ -23,4 +23,4 @@ enum type_name
 };
 
 
-void print(int, ...);
+void print(char *, ...);
