@@ -2,6 +2,7 @@
 #include <stdarg.h>
 #include <stdint.h>
 #include "pystr.h"
+#include "pyint.h"
 
 
 #define GenericType(x) _Generic((x), \
@@ -48,7 +49,8 @@ typedef enum type_name
     TYPENAME_VOID_POINTER,
     TYPENAME_INT_POINTER,
     TYPENAME_STRING_POINTER,
-    TYPENAME_OTHER
+    TYPENAME_INTEGER_POINTER,
+    TYPENAME_OTHER,
 } type_name;
 
 typedef struct pyobject
@@ -57,16 +59,7 @@ typedef struct pyobject
     String *string;
 } pyobject;
 
-//int * parse_format(char * format)
-//{
-//    u_int32_t len = strlen(format);
-//    int array[len];
-//
-//    return array;
-//}
-
-
-void print(char * format, ...)
+void print(char *format, ...)
 {
     va_list args;
     va_start(args, format);
@@ -78,6 +71,9 @@ void print(char * format, ...)
             case TYPENAME_STRING_POINTER:
                 printf("%s", get_content((String *) obj));
                 break;
+            case TYPENAME_INTEGER_POINTER:
+                printf("%lu", get_integer((Integer *) obj));
+                 break;
             case TYPENAME_BOOL:
                 break;
             case TYPENAME_UNSIGNED_CHAR:

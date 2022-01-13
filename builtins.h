@@ -1,4 +1,4 @@
-enum type_name
+typedef enum type_name
 {
     TYPENAME_BOOL,
     TYPENAME_UNSIGNED_CHAR,
@@ -19,8 +19,8 @@ enum type_name
     TYPENAME_VOID_POINTER,
     TYPENAME_INT_POINTER,
     TYPENAME_STRING_POINTER,
-    TYPENAME_OTHER
-};
-
+    TYPENAME_INTEGER_POINTER,
+    TYPENAME_OTHER,
+} type_name;
 
 void print(char *, ...);
