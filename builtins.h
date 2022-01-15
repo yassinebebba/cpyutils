@@ -1,3 +1,6 @@
+#define print(...) private_print("", __VA_ARGS__)
+
+
 typedef enum type_name
 {
     TYPENAME_BOOL,
@@ -23,4 +26,4 @@ typedef enum type_name
     TYPENAME_OTHER,
 } type_name;
 
-void print(char *, ...);
+void private_print(char *, ...);

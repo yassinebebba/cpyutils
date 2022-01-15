@@ -59,7 +59,7 @@ typedef struct pyobject
     String *string;
 } pyobject;
 
-void print(char *format, ...)
+void private_print(char *format, ...)
 {
     va_list args;
     va_start(args, format);
