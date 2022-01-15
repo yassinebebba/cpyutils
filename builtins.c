@@ -59,10 +59,10 @@ typedef struct pyobject
     String *string;
 } pyobject;
 
-void private_print(char *format, ...)
+void private_print(char *_, ...)
 {
     va_list args;
-    va_start(args, format);
+    va_start(args, _);
     for (unsigned int i = 0; i < 2; ++i)
     {
         int *obj = va_arg(args, int *);

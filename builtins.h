@@ -27,3 +27,4 @@ typedef enum type_name
 } type_name;
 
 void private_print(char *, ...);
+void fstring(char *, ...);
