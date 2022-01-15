@@ -1,6 +1,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "builtins.h"
+#include "pyint.h"
 
 
 typedef struct str
@@ -11,9 +12,9 @@ typedef struct str
     char content[];
 } str;
 
-unsigned long get_length(str *s)
+Integer *get_length(str *s)
 {
-    return s->length;
+    return integer_builder(s->length);
 }
 
 char *get_content(str *s)
