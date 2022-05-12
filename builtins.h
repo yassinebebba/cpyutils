@@ -1,4 +1,4 @@
-#define print(...) private_print("", __VA_ARGS__)
+#define print(arg_len, ...) private_print(arg_len, __VA_ARGS__)
 
 
 typedef enum type_name
@@ -26,5 +26,5 @@ typedef enum type_name
     TYPENAME_OTHER,
 } type_name;
 
-void private_print(char *, ...);
+void private_print(u_long, ...);
 void fstring(char *, ...);

@@ -29,3 +29,5 @@ void squeeze(String *, char);
 void repeat(String *, unsigned long);
 
 void append(String *, const char *);
+
+String ** split(char *, char *);

@@ -135,3 +135,28 @@ void slice(str *string, u_long start, u_long end)
     temp[i] = '\0';
     set_content(string, temp);
 }
+
+str **split(const char *string, char *pattern)
+{
+    u_long len = strlen(string);
+    u_long counter = 0;
+    u_long index = 0;
+    u_long initial_count = 5;
+    str **array = malloc(sizeof(str **) * initial_count);
+    u_long temp_counter = 0;
+    char temp[1000];
+    for (; counter <= len; ++counter)
+    {
+        if (string[counter] == ' ' || string[counter] == '\0')
+        {
+            temp[temp_counter] = '\0';
+            array[index++] = string_builder(temp);
+            temp_counter = 0;
+        } else
+        {
+            temp[temp_counter++] = string[counter];
+        }
+    }
+
+    return array;
+}

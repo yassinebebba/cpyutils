@@ -24,8 +24,7 @@ long double: TYPENAME_LONG_DOUBLE, \
 char *: TYPENAME_CHAR_POINTER, \
 void *: TYPENAME_VOID_POINTER, \
 int *: TYPENAME_INT_POINTER, \
-int *: TYPENAME_INT_POINTER,  \
-String *: TYPENAME_INT_POINTER, \
+String *: TYPENAME_STRING_POINTER, \
 default: TYPENAME_OTHER)
 
 typedef enum type_name
@@ -59,11 +58,11 @@ typedef struct pyobject
     String *string;
 } pyobject;
 
-void private_print(char *_, ...)
+void private_print(u_long arg_len, ...)
 {
     va_list args;
-    va_start(args, _);
-    for (unsigned int i = 0; i < 2; ++i)
+    va_start(args, arg_len);
+    for (unsigned int i = 0; i < arg_len; ++i)
     {
         int *obj = va_arg(args, int *);
         switch (*obj)
@@ -73,7 +72,7 @@ void private_print(char *_, ...)
                 break;
             case TYPENAME_INTEGER_POINTER:
                 printf("%lu", get_integer((Integer *) obj));
-                 break;
+                break;
             case TYPENAME_BOOL:
                 break;
             case TYPENAME_UNSIGNED_CHAR:
